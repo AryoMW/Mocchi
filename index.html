@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mochi 10 tkj 2</title>
+    <title>MochiMut! | 10 TKJ 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -12,6 +12,7 @@
             --dark-brown: #6b432a;
             --light-bg: #fdf5f4;
             --white: #ffffff;
+            --red-stock: #e74c3c;
         }
 
         body {
@@ -22,7 +23,6 @@
             color: var(--dark-brown);
         }
 
-        /* Header Styles */
         header {
             background-color: var(--dark-brown);
             color: var(--white);
@@ -82,11 +82,97 @@
             animation: wiggle 2s infinite ease-in-out;
         }
 
-        /* Menu Container */
         .container {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
+        }
+
+        .name-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(107, 67, 42, 0.1);
+            border-left: 5px solid var(--primary-pink);
+            animation: slideInRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .name-container label {
+            display: block;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark-brown);
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #f0e1e4;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--dark-brown);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 15px rgba(248, 205, 214, 0.7);
+            transform: scale(1.02);
+        }
+
+        .summary-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(107, 67, 42, 0.08);
+            border: 2px solid var(--primary-pink);
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .summary-card h3 {
+            margin-top: 0;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            color: var(--dark-brown);
+            border-bottom: 2px dashed var(--primary-pink);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .summary-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 1.05rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 2px solid var(--dark-brown);
+            color: var(--dark-brown);
         }
 
         .menu-grid {
@@ -95,7 +181,6 @@
             gap: 20px;
         }
 
-        /* Menu Items */
         .menu-item {
             background: var(--white);
             padding: 15px 25px;
@@ -118,6 +203,12 @@
             background-color: var(--primary-pink);
         }
 
+        .menu-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
         .menu-name {
             font-size: 1.1rem;
             font-weight: 600;
@@ -126,11 +217,12 @@
 
         .menu-price {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--dark-brown);
             background: var(--primary-pink);
-            padding: 5px 12px;
-            border-radius: 10px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            width: max-content;
             transition: all 0.3s ease;
         }
 
@@ -139,7 +231,109 @@
             color: var(--white);
         }
 
-        /* Footer */
+        .menu-stock {
+            font-size: 0.85rem;
+            color: var(--red-stock);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-stock i {
+            font-size: 0.75rem;
+        }
+
+        .qty-controller {
+            display: flex;
+            align-items: center;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 3px;
+            border: 2px solid var(--primary-pink);
+        }
+
+        .btn-qty {
+            background: var(--dark-brown);
+            color: var(--white);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-qty:hover {
+            background: var(--primary-pink);
+            color: var(--dark-brown);
+        }
+
+        .btn-qty:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .menu-qty {
+            width: 35px;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--dark-brown);
+            -moz-appearance: textfield;
+        }
+
+        .menu-qty::-webkit-outer-spin-button,
+        .menu-qty::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .header-wa-container {
+            margin-top: 25px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .btn-checkout-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-checkout-top:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+
+        .cart-badge {
+            background-color: #ff3b30;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
         footer {
             background-color: var(--primary-pink);
             text-align: center;
@@ -148,31 +342,6 @@
             color: var(--dark-brown);
             font-weight: 600;
             font-size: 1.2rem;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #25D366;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 15px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .header-wa-container {
-            margin-top: 25px;
-            animation: fadeIn 1.5s ease-in-out;
         }
 
         .shortlink-display {
@@ -192,7 +361,6 @@
             text-decoration: underline;
         }
 
-        /* Animations */
         @keyframes bounceIn {
             0% { transform: scale(0.3); opacity: 0; }
             50% { transform: scale(1.05); }
@@ -206,10 +374,11 @@
         }
 
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes wiggle {
@@ -217,163 +386,308 @@
             50% { transform: rotate(5deg); }
         }
 
-        /* Animasi delay untuk setiap item menu agar muncul berurutan */
-        .menu-item:nth-child(1) { animation-delay: 0.1s; }
-        .menu-item:nth-child(2) { animation-delay: 0.2s; }
-        .menu-item:nth-child(3) { animation-delay: 0.3s; }
-        .menu-item:nth-child(4) { animation-delay: 0.4s; }
-        .menu-item:nth-child(5) { animation-delay: 0.5s; }
-        .menu-item:nth-child(6) { animation-delay: 0.6s; }
-        .menu-item:nth-child(7) { animation-delay: 0.7s; }
-        .menu-item:nth-child(8) { animation-delay: 0.8s; }
-        .menu-item:nth-child(9) { animation-delay: 0.9s; }
-        .menu-item:nth-child(10) { animation-delay: 1.0s; }
-        .menu-item:nth-child(11) { animation-delay: 1.1s; }
-        .menu-item:nth-child(12) { animation-delay: 1.2s; }
-        .menu-item:nth-child(13) { animation-delay: 1.3s; }
-        .menu-item:nth-child(14) { animation-delay: 1.4s; }
-        .menu-item:nth-child(15) { animation-delay: 1.5s; }
-        .menu-item:nth-child(16) { animation-delay: 1.6s; }
-        .menu-item:nth-child(17) { animation-delay: 1.7s; }
-        .menu-item:nth-child(n+18) { animation-delay: 1.8s; }
+        .menu-item:nth-child(1) { animation-delay: 0.05s; }
+        .menu-item:nth-child(2) { animation-delay: 0.1s; }
+        .menu-item:nth-child(3) { animation-delay: 0.15s; }
+        .menu-item:nth-child(4) { animation-delay: 0.2s; }
+        .menu-item:nth-child(5) { animation-delay: 0.25s; }
+        .menu-item:nth-child(6) { animation-delay: 0.3s; }
+        .menu-item:nth-child(7) { animation-delay: 0.35s; }
+        .menu-item:nth-child(8) { animation-delay: 0.4s; }
+        .menu-item:nth-child(9) { animation-delay: 0.45s; }
 
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Mochi Menu</h1>
+        <h1>MochiMut!</h1>
         <div class="subtitle">
-            <i class="fas fa-store"></i> Kami dari kelas <b>10 TKJ 2 (Ruang 20)</b> menghadirkan berbagai varian mochi premium!
+            <i class="fas fa-store"></i> Kami dari kelas <b>10 TKJ 2</b> menghadirkan berbagai varian mochi kenyal enak!
         </div>
         <div class="badge">MENERIMA PESANAN</div>
         
         <div class="header-wa-container">
-            <a href="https://wa.me/6281977987330" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
-            </a>
+            <button onclick="kirimKeWhatsApp()" class="btn-checkout-top">
+                <i class="fab fa-whatsapp"></i> Konfirmasi & Kirim Pesanan <span class="cart-badge" id="total-badge">0</span>
+            </button>
         </div>
     </header>
 
     <div class="container">
+        
+        <div class="name-container">
+            <label for="nama-pemesan"><i class="fas fa-user-edit"></i> Nama Pemesan:</label>
+            <input type="text" id="nama-pemesan" class="name-input" placeholder="Masukkan nama kamu di sini..." required>
+        </div>
+
+        <div class="summary-card" id="summary-card">
+            <h3><i class="fas fa-shopping-basket"></i> Ringkasan Pesanan Kamu</h3>
+            <ul class="summary-list" id="summary-list"></ul>
+            <div class="summary-total">
+                <span>Total Bayar:</span>
+                <span id="summary-total-price">Rp 0</span>
+            </div>
+        </div>
+
         <div class="menu-grid">
+            <!-- Strawberry Coklat - Stok 6 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Coklat</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Coklat Milo</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Coklat Keju</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Coklat Oreo</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Oreo Cream</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Oreo Red Velvet</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Coklat Crunchy</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Beng Beng Coklat</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Coklat Anggur</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Matcha</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Tiramisu</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Strawberry Coklat</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 6 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Strawberry Coklat" data-price="7000" data-stock="6" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
 
+            <!-- Coklat Milo - Stok 5 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Durian</span>
-                <span class="menu-price">9k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Coklat Milo</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 5 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Coklat Milo" data-price="7000" data-stock="5" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Tiramisu - Stok 4 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Blueberry Cream</span>
-                <span class="menu-price">9k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Tiramisu</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 4 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Tiramisu" data-price="7000" data-stock="4" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Coklat Oreo - Stok 3 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Matcha</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Coklat Oreo</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 3 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Coklat Oreo" data-price="7000" data-stock="3" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Mangga Cream - Stok 5 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Redvelvet</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Mangga Cream</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 5 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Mangga Cream" data-price="7000" data-stock="5" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Strawberry Matcha - Stok 1 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Cream</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Strawberry Matcha</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 1 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Strawberry Matcha" data-price="7000" data-stock="1" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Coklat Keju - Stok 1 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Mangga</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Coklat Keju</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 1 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Coklat Keju" data-price="7000" data-stock="1" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Durian - Stok 1 - 10k -->
             <div class="menu-item">
-                <span class="menu-name">Strawberry Cheesecake</span>
-                <span class="menu-price">6k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Durian</span>
+                    <span class="menu-price">10k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 1 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Durian" data-price="10000" data-stock="1" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
+
+            <!-- Oreo Red Velvet - Stok 1 - 7k -->
             <div class="menu-item">
-                <span class="menu-name">Blueberry Cheesecake</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Biscof Lotus</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Brownies Cream</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Cream Cheese</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Taro Cheese</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Cheese Crunchy</span>
-                <span class="menu-price">6k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Mochi Bites Coklat</span>
-                <span class="menu-price">8k</span>
-            </div>
-            <div class="menu-item">
-                <span class="menu-name">Mochi Bites Kacang Coklat</span>
-                <span class="menu-price">8k</span>
+                <div class="menu-text">
+                    <span class="menu-name">Oreo Red Velvet</span>
+                    <span class="menu-price">7k</span>
+                    <span class="menu-stock"><i class="fas fa-box"></i> Stok: 1 pcs</span>
+                </div>
+                <div class="qty-controller">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, -1)">-</button>
+                    <input type="number" class="menu-qty" min="0" value="0" data-name="Oreo Red Velvet" data-price="7000" data-stock="1" oninput="cekStok(this); hitungUlang()">
+                    <button type="button" class="btn-qty" onclick="ubahQty(this, 1)">+</button>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
         <div>Yuk, pesan sekarang sebelum kehabisan!</div>
-        <a href="https://wa.me/6281977987330" target="_blank" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> +62 819-7798-7330
-        </a>
         <div class="shortlink-display">
             <span>Link Web: </span><a href="https://shr.pn/mochi" target="_blank">https://shr.pn/mochi</a>
         </div>
     </footer>
+
+    <script>
+        function cekStok(input) {
+            let qty = parseInt(input.value) || 0;
+            const stokMaks = parseInt(input.getAttribute('data-stock'));
+            
+            if (qty > stokMaks) {
+                input.value = stokMaks;
+                alert(`Stok ${input.getAttribute('data-name')} hanya tersedia ${stokMaks} pcs!`);
+            }
+            if (qty < 0) {
+                input.value = 0;
+            }
+        }
+
+        function ubahQty(btn, nilai) {
+            const controller = btn.closest('.qty-controller');
+            const input = controller.querySelector('.menu-qty');
+            let qtySekarang = parseInt(input.value) || 0;
+            const stokMaks = parseInt(input.getAttribute('data-stock'));
+            
+            qtySekarang += nilai;
+            
+            if (qtySekarang > stokMaks) {
+                alert(`Stok ${input.getAttribute('data-name')} hanya tersedia ${stokMaks} pcs!`);
+                return;
+            }
+            if (qtySekarang < 0) qtySekarang = 0;
+            
+            input.value = qtySekarang;
+            hitungUlang();
+        }
+
+        function hitungUlang() {
+            const inputs = document.querySelectorAll('.menu-qty');
+            const summaryCard = document.getElementById('summary-card');
+            const summaryList = document.getElementById('summary-list');
+            const summaryTotalPrice = document.getElementById('summary-total-price');
+            const totalBadge = document.getElementById('total-badge');
+
+            let totalHarga = 0;
+            let totalUnit = 0;
+            let listHTML = "";
+
+            inputs.forEach(input => {
+                let qty = parseInt(input.value) || 0;
+                const stokMaks = parseInt(input.getAttribute('data-stock'));
+                
+                if (qty > stokMaks) {
+                    qty = stokMaks;
+                    input.value = stokMaks;
+                }
+                if (qty < 0) { qty = 0; input.value = 0; }
+
+                if (qty > 0) {
+                    const nama = input.getAttribute('data-name');
+                    const harga = parseInt(input.getAttribute('data-price'));
+                    const subtotal = harga * qty;
+
+                    totalHarga += subtotal;
+                    totalUnit += qty;
+
+                    listHTML += `<li>
+                        <span><strong>${nama}</strong> (x${qty})</span>
+                        <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
+                    </li>`;
+                }
+            });
+
+            totalBadge.innerText = totalUnit;
+
+            if (totalUnit > 0) {
+                summaryCard.style.display = 'block';
+                summaryList.innerHTML = listHTML;
+                summaryTotalPrice.innerText = `Rp ${totalHarga.toLocaleString('id-ID')}`;
+            } else {
+                summaryCard.style.display = 'none';
+            }
+        }
+
+        function kirimKeWhatsApp() {
+            const inputs = document.querySelectorAll('.menu-qty');
+            const namaPemesan = document.getElementById('nama-pemesan').value.trim();
+
+            let totalHarga = 0;
+            let adaPesanan = false;
+            let listPesan = "";
+
+            inputs.forEach(input => {
+                const qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    adaPesanan = true;
+                    const namaMenu = input.getAttribute('data-name');
+                    const harga = parseInt(input.getAttribute('data-price'));
+                    const subtotal = harga * qty;
+                    totalHarga += subtotal;
+
+                    listPesan += `- *${namaMenu}* (${qty} pcs) = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+                }
+            });
+
+            if (!adaPesanan) {
+                alert("Wah, kamu belum memilih mochi. Silakan klik tombol (+) pada menu terlebih dahulu!");
+                return;
+            }
+
+            if (!namaPemesan) {
+                alert("Tolong isi nama kamu dulu ya di atas, biar kami gampang catat pesanannya!");
+                document.getElementById('nama-pemesan').focus();
+                return;
+            }
+
+            let nomorWA = "6281977987330"; 
+            let teksPesan = `Halo Tim Mochimut!\nNama: *${namaPemesan}* ingin melakukan pemesanan.\n\nBerikut rincian orderan saya:\n`;
+            
+            teksPesan += listPesan;
+            teksPesan += `\n*Total Akhir Pembayaran: Rp ${totalHarga.toLocaleString('id-ID')}*`;
+            teksPesan += `\n\nMohon diproses ya Kak, terima kasih banyak! ✨`;
+
+            const urlWhatsApp = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksPesan)}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+    </script>
 
 </body>
 </html>
