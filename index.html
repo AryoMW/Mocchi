@@ -13,6 +13,7 @@
             --light-bg: #fdf5f4;
             --white: #ffffff;
             --red-stock: #e74c3c;
+            --orange-soon: #f39c12;
         }
 
         body {
@@ -90,17 +91,24 @@
         
         /* --- ALERT APOLOGY --- */
         .alert-apology {
-            background-color: #fdf5f4;
-            color: var(--red-stock);
-            padding: 15px 20px;
+            background-color: #fff9f2;
+            color: var(--dark-brown);
+            padding: 18px 25px;
             border-radius: 15px;
             margin-bottom: 25px;
             text-align: center;
-            border: 2px dashed var(--red-stock);
+            border: 2px dashed var(--orange-soon);
             font-weight: 600;
             font-size: 1.1rem;
+            line-height: 1.6;
             animation: fadeIn 1s ease-in-out;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.1);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.1);
+        }
+
+        .alert-apology i {
+            color: var(--orange-soon);
+            margin-right: 5px;
+            font-size: 1.2rem;
         }
 
         /* --- FORM NAMA & SEARCH BAR --- */
@@ -252,44 +260,31 @@
             position: relative;
             overflow: hidden;
         }
-
-        .menu-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 15px rgba(107, 67, 42, 0.2);
-            border-left: 5px solid var(--dark-brown);
-            background-color: var(--primary-pink);
-        }
         
-        .menu-item.sold-out {
-            opacity: 0.65;
-            background-color: #f5f5f5;
-            border-left-color: #cccccc;
+        .menu-item.not-available {
+            opacity: 0.7;
+            background-color: #f7f7f7;
+            border-left-color: #d1c7c5;
             pointer-events: none;
         }
 
-        .menu-item.sold-out:hover {
-            transform: translateY(0) scale(1);
-            box-shadow: 0 4px 6px rgba(107, 67, 42, 0.1);
-            background-color: #f5f5f5;
-        }
-
-        .stamp-habis {
+        .stamp-soon {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-15deg);
-            color: var(--red-stock);
-            border: 4px solid var(--red-stock);
+            color: var(--orange-soon);
+            border: 4px solid var(--orange-soon);
             padding: 5px 20px;
             font-family: 'Fredoka One', cursive;
             font-size: 1.8rem;
             border-radius: 8px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             z-index: 10;
             pointer-events: none;
-            box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 0 10px rgba(243, 156, 18, 0.2);
         }
 
         .menu-text {
@@ -317,22 +312,13 @@
             transition: all 0.3s ease;
         }
 
-        .menu-item:not(.sold-out):hover .menu-price {
-            background: var(--dark-brown);
-            color: var(--white);
-        }
-
-        .menu-stock {
+        .menu-stock-soon {
             font-size: 0.85rem;
-            color: var(--red-stock);
+            color: var(--orange-soon);
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 5px;
-        }
-
-        .menu-stock i {
-            font-size: 0.75rem;
         }
 
         .qty-controller {
@@ -362,11 +348,6 @@
             transition: all 0.2s ease;
         }
 
-        .btn-qty:hover:not(:disabled) {
-            background: var(--primary-pink);
-            color: var(--dark-brown);
-        }
-
         .btn-qty:disabled {
             background: #cccccc;
             cursor: not-allowed;
@@ -387,12 +368,6 @@
         
         .menu-qty:disabled {
             color: #888888;
-        }
-
-        .menu-qty::-webkit-outer-spin-button,
-        .menu-qty::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
         }
 
         /* --- WHATSAPP & FOOTER --- */
@@ -491,7 +466,7 @@
         }
 
         .modal-icon.error { color: var(--red-stock); }
-        .modal-icon.warning { color: #f39c12; }
+        .modal-icon.warning { color: var(--orange-soon); }
         .modal-icon.info { color: var(--dark-brown); }
 
         .modal-title {
@@ -567,10 +542,9 @@
         <div class="subtitle">
             <i class="fas fa-store"></i> Kami dari kelas <b>10 TKJ 2</b> menghadirkan berbagai varian mochi kenyal yang enak!
         </div>
-        <div class="badge">MENERIMA PESANAN</div>
+        <div class="badge">COMING SOON</div>
         
         <div class="header-wa-container">
-            <!-- Jika ditekan saat semua kosong, akan memunculkan pop-up minta maaf juga -->
             <button onclick="kirimKeWhatsApp()" class="btn-checkout-top">
                 <i class="fab fa-whatsapp"></i> Kirim Pesanan <span class="cart-badge" id="total-badge">0</span>
             </button>
@@ -579,14 +553,14 @@
 
     <div class="container">
         
-        <!-- ALERT PERMINTAAN MAAF -->
+        <!-- ALERT PERMINTAAN MAAF SESUAI REQUEST -->
         <div class="alert-apology">
-            <i class="fas fa-sad-tear"></i> <strong>Mohon Maaf Banget!</strong> Saat ini semua varian mochi kami sedang kosong (sold out) karena barangnya belum tersedia. Pantau terus ya untuk update restock selanjutnya! 🙏
+            <i class="fas fa-info-circle"></i> <strong>Mohon Maaf Banget!</strong> Saat ini semua varian mochi kami sedang kosong karena barangnya belum tersedia. Pantau terus ya untuk update selanjutnya! 🥞
         </div>
 
         <div class="input-card">
             <label for="nama-pemesan"><i class="fas fa-user-edit"></i> Nama Pemesan:</label>
-            <input type="text" id="nama-pemesan" class="input-field" placeholder="Masukkan nama kamu di sini..." required>
+            <input type="text" id="nama-pemesan" class="input-field" placeholder="Masukkan nama kamu di sini..." required disabled>
         </div>
 
         <div class="search-container">
@@ -605,262 +579,263 @@
 
         <div class="menu-grid" id="menu-grid">
             
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <!-- SEMUA ITEM DIRUBAH MENJADI NOT-AVAILABLE DENGAN STAMP SOON! -->
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Strawberry Coklat</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Coklat Milo</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Tiramisu</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Coklat Oreo</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Mangga Cream</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Coklat Keju</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Oreo Cream</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Oreo Red Velvet</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Coklat Crunchy</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Beng Beng Coklat</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Coklat Anggur</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Matcha</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Durian</span>
                     <span class="menu-price">10k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Blueberry Cream</span>
                     <span class="menu-price">10k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Strawberry Matcha</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Strawberry Red Velvet</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Strawberry Cream</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Strawberry Cheesecake</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Blueberry Cheesecake</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Biscoff Lotus</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Brownies Cream</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Cream Cheese</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Taro Cheese</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Cheese Crunchy</span>
                     <span class="menu-price">7k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Mochi Bites Coklat</span>
                     <span class="menu-price">8k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
 
-            <div class="menu-item sold-out">
-                <div class="stamp-habis">HABIS!</div>
+            <div class="menu-item not-available">
+                <div class="stamp-soon">SOON!</div>
                 <div class="menu-text">
                     <span class="menu-name">Mochi Bites Kacang Coklat</span>
                     <span class="menu-price">8k</span>
-                    <span class="menu-stock"><i class="fas fa-times-circle"></i> Stok Habis</span>
+                    <span class="menu-stock-soon"><i class="fas fa-clock"></i> Belum Tersedia</span>
                 </div>
                 <div class="qty-controller"><button type="button" class="btn-qty" disabled>-</button><input type="number" class="menu-qty" disabled><button type="button" class="btn-qty" disabled>+</button></div>
             </div>
@@ -869,7 +844,7 @@
     </div>
 
     <footer>
-        <div>Mochi Bumikita | Yuk, pesan sekarang sebelum kehabisan!</div>
+        <div>Mochi Bumikita | Ditunggu kehadirannya ya!</div>
     </footer>
 
     <script>
@@ -925,37 +900,6 @@
         });
 
         // ================= LOGIC FUNCTIONS =================
-        function cekStok(input) {
-            let qty = parseInt(input.value) || 0;
-            const stokMaks = parseInt(input.getAttribute('data-stock'));
-            const nama = input.getAttribute('data-name');
-            
-            if (qty > stokMaks) {
-                input.value = stokMaks;
-                tampilkanModal('Stok Terbatas!', `Stok ${nama} hanya tersedia ${stokMaks} pcs. Jangan borong semua dong! 😅`, 'warning');
-            }
-            if (qty < 0) input.value = 0;
-        }
-
-        function ubahQty(btn, nilai) {
-            const controller = btn.closest('.qty-controller');
-            const input = controller.querySelector('.menu-qty');
-            let qtySekarang = parseInt(input.value) || 0;
-            const stokMaks = parseInt(input.getAttribute('data-stock'));
-            const nama = input.getAttribute('data-name');
-            
-            qtySekarang += nilai;
-            
-            if (qtySekarang > stokMaks) {
-                tampilkanModal('Stok Habis!', `Stok ${nama} tinggal ${stokMaks} pcs. Maaf ya, gak bisa nambah lagi! 🥺`, 'error');
-                return;
-            }
-            if (qtySekarang < 0) qtySekarang = 0;
-            
-            input.value = qtySekarang;
-            hitungUlang();
-        }
-
         function hitungUlang() {
             const inputs = document.querySelectorAll('.menu-qty:not(:disabled)');
             const summaryCard = document.getElementById('summary-card');
@@ -996,46 +940,9 @@
         }
 
         function kirimKeWhatsApp() {
-            const inputs = document.querySelectorAll('.menu-qty:not(:disabled)');
-            const namaPemesan = document.getElementById('nama-pemesan').value.trim();
-
-            let totalHarga = 0;
-            let adaPesanan = false;
-            let listPesan = "";
-
-            inputs.forEach(input => {
-                const qty = parseInt(input.value) || 0;
-                if (qty > 0) {
-                    adaPesanan = true;
-                    const namaMenu = input.getAttribute('data-name');
-                    const harga = parseInt(input.getAttribute('data-price'));
-                    const subtotal = harga * qty;
-                    totalHarga += subtotal;
-
-                    listPesan += `- *${namaMenu}* (${qty} pcs) = Rp ${subtotal.toLocaleString('id-ID')}\n`;
-                }
-            });
-
-            if (!adaPesanan) {
-                tampilkanModal('Mohon Maaf!', 'Saat ini stok mochi sedang kosong, ditunggu restocknya ya! 🙏', 'info');
-                return;
-            }
-
-            if (!namaPemesan) {
-                tampilkanModal('Nama Belum Diisi!', 'Tolong isi nama kamu dulu ya, biar kami gampang catat pesanannya! ✏️', 'info');
-                document.getElementById('nama-pemesan').focus();
-                return;
-            }
-
-            let nomorWA = "6281977987330"; 
-            let teksPesan = `Halo Tim Mochimut!\nNama: *${namaPemesan}* ingin melakukan pemesanan.\n\nBerikut rincian orderan saya:\n`;
-            
-            teksPesan += listPesan;
-            teksPesan += `\n*Total Akhir Pembayaran: Rp ${totalHarga.toLocaleString('id-ID')}*`;
-            teksPesan += `\n\nMohon diproses ya Kak, terima kasih banyak! ✨`;
-
-            const urlWhatsApp = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksPesan)}`;
-            window.open(urlWhatsApp, '_blank');
+            // Karena semua dinonaktifkan, klik kirim pesanan otomatis memicu modal pemberitahuan kosong
+            tampilkanModal('Mohon Maaf!', 'Saat ini produk kami belum tersedia untuk dipesan. Tunggu update selanjutnya ya! 🙏', 'warning');
+            return;
         }
     </script>
 
